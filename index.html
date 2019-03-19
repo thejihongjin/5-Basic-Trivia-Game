@@ -9,9 +9,113 @@
 </head>
 <body>
 
+    <h1>Totally Trivial Trivia!</h1><br>
+    <div id="main-content">
+        <button id="start">Start</button>
+    </div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
+        var userAnswers = [];
+        var numCorrect = 0;
+        var numWrong = 0;
+        var numBlank = 0;
 
+        var intervalId;
+        var timeLeft = 120; //start at 120s?
+        var triviaObj = [
+            {
+                question: '1. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '2. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '3. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '4. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '5. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '6. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '7. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '8. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '9. ',
+                options: ['','','',''],
+                answer: ''
+            },
+            {
+                question: '10. ',
+                options: ['','','',''],
+                answer: ''
+            }
+        ];
+
+        $("#start").on("click", function() {
+            $("#main-content").html("Time Remaining: <span id='time-left'>" + timeLeft + "</span> Seconds<br>"); //replace main content with time remaining, trivia form, & done btn
+            $("#main-content").append(); //trivia form
+            $("#main-content").append("<button id='done'>Done</button>"); //trivia form
+            intervalId = setInterval(decrement, 1000);
+        });
+
+        $("#done").on("click", function() {
+            checkAnswers(); //checks answers
+        });
+
+        function decrement() {
+            timeLeft--;
+            $("#time-left").html(timeLeft);
+            if (timeLeft === 0) {
+                checkAnswers();
+            }
+        }
+
+        function generateTriviaForm(arr) {
+            //create form
+            for (var i = 0; i < arr.length; i++) {
+                //generate questions & answers
+            }
+            //append questions to form - inside loop?
+        }
+
+        function checkAnswers() {
+            clearInterval(intervalId);
+
+            //check user input
+            // if unanswered
+            numBlank++;
+            // else if correct
+            numCorrect++;
+            //else if incorrect
+            numWrong++;
+
+            $("#main-content").html("All Done!<br><br>Correct Answers: " + numCorrect + "<br>Incorrect Answers: " + numWrong + "<br>Unanswered: " + numBlank);
+        }
 	</script>
 	
     <!-- <script src="./assets/javascript/app.js"></script> -->
