@@ -83,24 +83,23 @@
         ];
 
         $("#start").on("click", function() {
-            $("#main-content").html("Time Remaining: <span id='time-left'>" + timeLeft + "</span> Seconds<br><br>"); //replace main content with time remaining, trivia form, & done btn
+            $("#main-content").html("Time Remaining: <span id='time-left'>" + timeLeft + "</span> Seconds<br><br>");
 			generateTriviaForm();
-            $("#main-content").append("<button id='done'>Done</button>"); //trivia form
+            $("#main-content").append("<button id='done'>Done</button>");
             intervalId = setInterval(decrement, 1000);
         });
 
         $("#main-content").on("click", "#done", function() {
-			for (var i = 0; i < triviaObj.length; i++) { //change loop???
+			for (var i = 0; i < triviaObj.length; i++) {
 				var radioName = "input[name='q"+ i +"']:checked";
 				var radioValue = $(radioName).val();
-				//console.log(radioValue);
 				if (radioValue !== undefined) {
 					userAnswers.push(radioValue);
 				} else {
 					userAnswers.push('');
 				}
 			}
-            checkAnswers(); //checks answers
+            checkAnswers();
         });
 
         function decrement() {
@@ -140,14 +139,11 @@
 				$(formContainer).append("<br>");
             }
 			
-            $("#main-content").append(formContainer); //trivia form
+            $("#main-content").append(formContainer);
         }
 
         function checkAnswers() {
             clearInterval(intervalId);
-
-			//https://sharepoint.stackexchange.com/questions/118934/how-to-save-checked-value-state-from-radio-button-in-an-html-page-form-to-custom ??
-			//we could use var input = document.getElementById("input_id").value; to get the value of input field, where input_id is the id of your input field.
 
 			for (var i = 0; i < userAnswers.length; i++) {
 				console.log("userAnswers[i] === " + userAnswers[i] + "   triviaObj[i].answer === " + triviaObj[i].answer);
