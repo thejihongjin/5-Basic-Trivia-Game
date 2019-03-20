@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    line-height: 1.5;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+    text-align: start;
+}
+
+label {
+    margin-left: 5px;
+}
