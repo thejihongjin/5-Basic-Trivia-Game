@@ -33,52 +33,52 @@
             {
                 question: '1. Who is the Hufflepuff house ghost?',
 				options: ['Moaning Myrtle','Fat Friar','Grey Lady','Bloody Baron','Nearly Headless Nick'], //change to obj w/ letter: answer pairs?
-                answer: 'Fat Friar'
+                answer: '1'
             },
             {
                 question: '2. Which creatures pull the carriages that take students from the Hogwarts Express to the Castle?',
                 options: ['hippogriffs','thestrals','centaurs','manticores'],
-                answer: 'thestrals'
+                answer: '1'
             },
             {
                 question: '3. Dumbledore has a scar above his left knee that is a perfect map of what?',
                 options: ['Hogwarts','The Ministry of Magic','Diagon Alley','The London Underground'],
-                answer: 'The London Underground'
+                answer: '3'
             },
             {
                 question: '4. ', //???What is the name of the room Harry uses to teach Dumbledore's Army?
                 options: ['','','answer',''],
-                answer: ''
+                answer: '2'
             },
             {
                 question: '5. What does S.P.E.W. stand for?',
                 options: ['Society for the Prosecution of Evil Wizards','Society for the Promotion of Elfish Welfare','Society for the Protection of Elderly Witches','Saving Persecuted Elves Willfully'],
-                answer: 'Society for the Promotion of Elfish Welfare'
+                answer: '1'
             },
             {
                 question: '6. ',
                 options: ['answer','','',''],
-                answer: ''
+                answer: '0'
             },
             {
                 question: '7. ',
                 options: ['','','answer',''],
-                answer: ''
+                answer: '2'
             },
             {
                 question: '8. Who was the headmaster of Hogwarts when the Chamber of Secrets was opened for the first time?',
                 options: ['Albus Dumbledore','Phineas Nigellus Black','Rufus Scrimgeour','Armando Dippet'],
-                answer: 'Armando Dippet'
+                answer: '3'
             },
             {
                 question: '9. Which of these is NOT a candy that can be purchased at Honeydukes in Hogsmeade village?',
                 options: ['Blood-Flavored Lollipops','Toothflossing Stringmints','Taffy Toads','Ice Mice'],
-                answer: 'Taffy Toads'
+                answer: '2'
             },
             {
                 question: "10. Who was the Potters' Secret Keeper?",
                 options: ['Peter Pettigrew','Albus Dumbledore','Sirius Black','Remus Lupin'],
-                answer: 'Peter Pettigrew'
+                answer: '0'
             }
         ];
 
@@ -90,6 +90,16 @@
         });
 
         $("#main-content").on("click", "#done", function() {
+			for (var i = 0; i < triviaObj.length; i++) { //change loop???
+				var radioName = "input[name='q"+ i +"']:checked";
+				var radioValue = $(radioName).val();
+				//console.log(radioValue);
+				if (radioValue !== undefined) {
+					userAnswers.push(radioValue);
+				} else {
+					userAnswers.push('');
+				}
+			}
             checkAnswers(); //checks answers
         });
 
@@ -139,14 +149,16 @@
 			//https://sharepoint.stackexchange.com/questions/118934/how-to-save-checked-value-state-from-radio-button-in-an-html-page-form-to-custom ??
 			//we could use var input = document.getElementById("input_id").value; to get the value of input field, where input_id is the id of your input field.
 
-			//for/foreach loop
-				/*if (userAnswers[i] === '') {
+			for (var i = 0; i < userAnswers.length; i++) {
+				console.log("userAnswers[i] === " + userAnswers[i] + "   triviaObj[i].answer === " + triviaObj[i].answer);
+				if (userAnswers[i] === '') {
 					numBlank++;
 				} else if (userAnswers[i] === triviaObj[i].answer) {
 					numCorrect++;
 				} else {
 					numWrong++;
-				}*/
+				}
+			}
 
             $("#main-content").html("All Done!<br><br>Correct Answers: " + numCorrect + "<br>Incorrect Answers: " + numWrong + "<br>Unanswered: " + numBlank);
         }
