@@ -66,15 +66,6 @@ $("#start").on("click", function() {
 });
 
 $("#main-content").on("click", "#done", function() {
-    for (var i = 0; i < triviaObj.length; i++) {
-        var radioName = "input[name='q"+ i +"']:checked";
-        var radioValue = $(radioName).val();
-        if (radioValue !== undefined) {
-            userAnswers.push(radioValue);
-        } else {
-            userAnswers.push('');
-        }
-    }
     checkAnswers();
 });
 
@@ -121,8 +112,18 @@ function generateTriviaForm() {
 function checkAnswers() {
     clearInterval(intervalId);
 
+    for (var i = 0; i < triviaObj.length; i++) {
+        var radioName = "input[name='q"+ i +"']:checked";
+        var radioValue = $(radioName).val();
+        if (radioValue !== undefined) {
+            userAnswers.push(radioValue);
+        } else {
+            userAnswers.push('');
+        }
+    }
+    
     for (var i = 0; i < userAnswers.length; i++) {
-        console.log("userAnswers[i] === " + userAnswers[i] + "   triviaObj[i].answer === " + triviaObj[i].answer);
+        //console.log("userAnswers[i] === " + userAnswers[i] + "   triviaObj[i].answer === " + triviaObj[i].answer);
         if (userAnswers[i] === '') {
             numBlank++;
         } else if (userAnswers[i] === triviaObj[i].answer) {
