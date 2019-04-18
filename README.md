@@ -1,4 +1,5 @@
 # 5-Basic-Trivia-Game
+https://thejihongjin.github.io/5a-Basic-Trivia-Game/
 
 ### Option One: Basic Quiz (Timed Form)
 ![Basic](./assets/images/1-basic.jpg)
